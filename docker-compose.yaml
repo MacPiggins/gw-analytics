@@ -1,0 +1,30 @@
+services:
+  service:
+    image: gw-analytics:latest
+    build: .
+    depends_on:
+      clickhouse:
+        condition: service_started
+      nats:
+        condition: service_started
+    environment:
+      CLICKHOUSE_URL: http://clickhouse:8123
+      NATS_URL: nats://nats:4222
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+
+  nats:
+    image: nats:latest
+    command: ["-js"]
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+
+volumes:
+  clickhouse_data:
