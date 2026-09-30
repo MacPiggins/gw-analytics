@@ -2,6 +2,8 @@
 
 GW Analytics is a Go service that consumes wallet events from NATS JetStream and stores them in ClickHouse for downstream analytics and reporting. It is designed to be lightweight, container-friendly, and easy to run locally or in Docker.
 
+> Part of the **GW stack** — see the [general deployment repository](https://github.com/MacPiggins/gw-deploy) for deployment configuration and infrastructure.
+
 ## Overview
 
 The application:
